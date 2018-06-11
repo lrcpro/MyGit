@@ -1,3 +1,4 @@
 Git leaning.
-First down.It's the second time.
-2
+Second down.It's the third time.
+Have leaned status,diff.
+3
