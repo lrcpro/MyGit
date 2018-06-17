@@ -8,7 +8,10 @@
 int FindRepet(int num[], int len)
 {
     assert(num != NULL);
-    assert(!(len <= 0));
+    if(len <= 0)
+    {
+        return -1;
+    }
     for(int i=0; i<len; i++)
     {
         if(num[i]<0 || num[i]>len-1)
@@ -31,8 +34,13 @@ int FindRepet(int num[], int len)
 }
 int main()
 {
-    int num[5] = {1,2,1,0,4};
-    printf("%d",FindRepet(num, 5));
+    int arr[5] = {1,2,1,0,4};
+    int num = FindRepet(arr,5);
+    if (num > 0)
+        printf("%d",num);
+    else
+        printf("未找到或输入有错误");
+    
     return 0;
 }
 
