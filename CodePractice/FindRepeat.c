@@ -3,44 +3,48 @@
  长度为n，所有数字都在0～n-1范围内。*/
 
 #include <stdio.h>
+#include <stdbool.h>
 #include <assert.h>
 
-int FindRepet(int num[], int len)
+bool FindRepet(int arr[], int len, int* num)
 {
-    assert(num != NULL);
+    assert(arr != NULL);
     if(len <= 0)
     {
-        return -1;
+        return false;
     }
     for(int i=0; i<len; i++)
     {
-        if(num[i]<0 || num[i]>len-1)
-            return -1;
+        if(arr[i]<0 || arr[i]>len-1)
+            return false;
     }
     for(int i=0; i<len; i++)
     {
-        while (num[i]!=i)
+        while (arr[i]!=i)
         {
-            if (num[num[i]]==num[i])
-                return num[i];
+            if (arr[arr[i]]==arr[i])
+            {
+                *num = arr[i];
+                return true;
+            }
             //swap
-            int tmp = num[i];
-            num[i] = num[tmp];
-            num[tmp] = tmp;
+            int tmp = arr[i];
+            arr[i] = arr[tmp];
+            arr[tmp] = tmp;
         }
     }
-    return -1;
-
+    return false;
+    
 }
 int main()
 {
     int arr[5] = {1,2,1,0,4};
-    int num = FindRepet(arr,5);
-    if (num > 0)
-        printf("%d",num);
+    int num = 0;
+    if (FindRepet(arr, sizeof(arr)/sizeof(arr[0]), &num))
+    {
+        printf("%d\n",num);
+    }
     else
-        printf("未找到或输入有错误");
-    
+        printf("Can't find or error input!\n");
     return 0;
 }
-
