@@ -39,6 +39,8 @@ void QueuePop(Queue* q)
     pListNode dNode = q->_pHead->_pNext;
     if (dNode) {
         q->_pHead->_pNext = dNode->_pNext;
+	if(q->_pHead->_pNext == NULL)
+	{  q->_pTail = q->_pHead; }
         free(dNode);
     }
 }
