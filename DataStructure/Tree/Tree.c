@@ -277,8 +277,39 @@ int IsBalanceGetHight(TreeNode *root, int *hight)
     return 1;
 }
 
+int GetLongFarset(TreeNode *root)
+{
+    if (root==NULL)
+    {
+        return 0;
+    }
+    int leftH_A_rightH = GetTreeHigh(root->Left)+GetTreeHigh(root->Right)+1;
+    int fastL = GetLongFarset(root->Left);
+    int fastR = GetLongFarset(root->Right);
+    int max = MAX(fastL, fastR);
+    
+    return MAX(leftH_A_rightH, max);
+}
 
-
+TreeNode *CreateTreePreInOrder(TDataType preT[],
+                               TDataType inT[],int size)
+{
+    if (size==0) {
+        return NULL;
+    }
+    TDataType rootValue = preT[0];
+    TreeNode *root = BuyTreeNode(rootValue);
+    int i;
+    for (i = 0; i<size; i++)
+    {
+        if (inT[i]==rootValue)
+        {break;}
+    }
+    root->Left = CreateTreePreInOrder(preT+1, inT, i);
+    root->Right= CreateTreePreInOrder(preT+i+1, inT+i+1, size-i-1);
+    
+    return root;
+}
 
 
 

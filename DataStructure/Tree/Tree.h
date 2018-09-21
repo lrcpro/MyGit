@@ -35,5 +35,8 @@ TreeNode *GetNearestAncestors(TreeNode* root, TDataType n1,
                               TDataType n2);
 int IsBalance(TreeNode *root);
 int IsBalanceGetHight(TreeNode *root, int *hight);
+int GetLongFarset(TreeNode *root);
+TreeNode *CreateTreePreInOrder(TDataType preT[],
+                               TDataType inT[],int size);
 
 #endif /* Tree_h */
