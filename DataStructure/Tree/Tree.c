@@ -311,6 +311,40 @@ TreeNode *CreateTreePreInOrder(TDataType preT[],
     return root;
 }
 
+int BSTreeInsert(TreeNode **root, TDataType da)
+{
+    if (*root == NULL)
+    {
+        *root = BuyTreeNode(da);
+        return 1;
+    }
+    TreeNode *cur = *root;
+    TreeNode *parent = cur;
+    while (cur!=NULL)
+    {
+        if (cur->data == da)
+        {
+            return -1;
+        }
+        parent = cur;
+        if (da>cur->data)
+        {
+            cur = cur->Right;
+        }
+        else
+        {
+            cur = cur->Left;
+        }
+    }
+    if (da>parent->data)
+    {
+        parent->Right = BuyTreeNode(da);
+    }
+    else
+        parent->Left = BuyTreeNode(da);
+    
+    return 0;
+}
 
 
 
