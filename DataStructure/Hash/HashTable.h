@@ -41,5 +41,6 @@ size_t mod(KeyType key, size_t capacity);
 void HashTableInit(HashTable *pHT, size_t capacity,HashFunc hash);
 int HashTableSearch(HashTable *pHT, KeyType key);
 void HashTableInsert(HashTable *pHT, KeyType key);
+void HashTableDelete(HashTable *pHT, KeyType key);
 
 #endif /* HashTable_h */

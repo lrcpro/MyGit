@@ -81,3 +81,19 @@ void HashTableInsert(HashTable *pHT, KeyType key)
     pHT->size++;
     
 }
+
+void HashTableDelete(HashTable *pHT, KeyType key)
+{
+    assert(pHT);
+    size_t index = pHT->hash(key, pHT->Capacity);
+    while (pHT->array[index].state !=EMPTY)
+    {
+        if (pHT->array[index].state==EXIST &&
+            pHT->array[index].Key == key)
+        {
+            pHT->array[index].state =DELETE;
+            pHT->size--;
+            return;
+        }
+    }
+}
