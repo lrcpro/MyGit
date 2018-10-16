@@ -1,6 +1,8 @@
-Git leaning.
-Second down.It's the third time.
-Have leaned status,diff.
-3
-9.26
+Git for codeprectic and datastruct
+LinkList
+Queue
+Stack
+Tree
+Hash
+
 
