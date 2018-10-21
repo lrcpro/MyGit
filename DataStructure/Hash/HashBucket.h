@@ -27,5 +27,10 @@ typedef struct HashBucket
     
 }HashBucket;
 
+void HashBucketInit(HashBucket *pHB, size_t capacity);
+void HashBucketDestroy(HashBucket *pHB);
+int HashBucketSearch(const HashBucket *pHB, HashKey key);
+void HashBucketInsert(HashBucket *pHB, HashKey key);
+
 
 #endif /* HashBucket_h */

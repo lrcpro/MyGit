@@ -10,6 +10,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+size_t HashFunc(HashBucket *pHB,HashKey key)
+{
+    return key%pHB->Capacity;
+}
+
 void HashBucketInit(HashBucket *pHB, size_t capacity)
 {
     pHB->Array = (Node**)malloc(sizeof(Node *)*capacity);
@@ -40,8 +45,49 @@ void HashBucketDestroy(HashBucket *pHB)
     free(pHB->Array);
 }
 
-void HashBucketInsert()
+int HashBucketSearch(const HashBucket *pHB, HashKey key)
 {
+    assert(pHB);
+    for (int i = 0; i<pHB->Capacity; i++)
+    {
+        if (pHB->Array[i]!=NULL)
+        {
+            Node* cur = pHB->Array[i];
+            while (cur!=NULL)
+            {
+                if (cur->key == key)
+                    return 1;
+                
+                cur = cur->Next;
+            }
+        }
+    }
+    return 0;
+}
+
+void HashBucketInsert(HashBucket *pHB, HashKey key)
+{
+    if (HashBucketSearch(pHB, key))
+    {
+        return;
+    }
+    
+    //explor
+    int index = (int)HashFunc(pHB, key);
+    if (pHB->Array[index] == NULL)
+    {
+        pHB->Array[index] = (Node*)malloc(sizeof(Node));
+        pHB->Array[index]->key = key;
+        pHB->Array[index]->Next = NULL;
+    }
+    else
+    {
+        Node *NewNode = (Node*)malloc(sizeof(Node));
+        NewNode->Next = pHB->Array[index];
+        NewNode->key =key;
+        pHB->Array[index] = NewNode;
+    }
+    pHB->Size++;
     
 }
 
